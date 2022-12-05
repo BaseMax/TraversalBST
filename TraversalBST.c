@@ -65,6 +65,18 @@ void print_preorder(node* root)
 
 }
 
+void print_proorder(node* root)
+{
+    if (root == NULL) return;
+
+
+}
+
+void print(node* root, int x)
+{
+
+}
+
 int main(int argc, char** argv)
 {
     /*
@@ -94,7 +106,6 @@ int main(int argc, char** argv)
     node* c7 = create_node(8);
     c6 = put_to_left(c6, c4);
     c6 = put_to_right(c6, c7);
-
 
     node* c8 = create_node(16);
     node* c9 = create_node(17);
