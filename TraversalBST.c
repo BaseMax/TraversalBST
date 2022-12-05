@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct node
 {
@@ -62,19 +63,116 @@ void print_preorder(node* root)
 {
     if (root == NULL) return;
 
-
+    printf("%d ", root->data);
+    print_preorder(root->left);
+    print_preorder(root->right);
 }
 
 void print_proorder(node* root)
 {
     if (root == NULL) return;
 
-
+    print_proorder(root->left);
+    print_proorder(root->right);
+    printf("%d ", root->data);
 }
 
-void print(node* root, int x)
+int find_height(node* root)
 {
+    if (root == NULL) return 0;
 
+    int h1 = find_height(root->left);
+    int h2 = find_height(root->right);
+
+    if (h1 > h2) return h1 + 1;
+    return h2 + 1;
+}
+
+// public static void printBinaryTree(Node root)
+// {
+//     LinkedList<Node> treeLevel = new LinkedList<Node>();
+//     treeLevel.add(root);
+//     LinkedList<Node> temp = new LinkedList<Node>();
+//     int counter = 0;
+//     int height = heightOfTree(root) - 1;
+//     // System.out.println(height);
+//     double numberOfElements
+//         = (Math.pow(2, (height + 1)) - 1);
+//     // System.out.println(numberOfElements);
+//     while (counter <= height) {
+//         Node removed = treeLevel.removeFirst();
+//         if (temp.isEmpty()) {
+//             printSpace(numberOfElements
+//                             / Math.pow(2, counter + 1),
+//                         removed);
+//         }
+//         else {
+//             printSpace(numberOfElements
+//                             / Math.pow(2, counter),
+//                         removed);
+//         }
+//         if (removed == null) {
+//             temp.add(null);
+//             temp.add(null);
+//         }
+//         else {
+//             temp.add(removed.left);
+//             temp.add(removed.right);
+//         }
+
+//         if (treeLevel.isEmpty()) {
+//             System.out.println("");
+//             System.out.println("");
+//             treeLevel = temp;
+//             temp = new LinkedList<>();
+//             counter++;
+//         }
+//     }
+// }
+void print_space(int n, node* removed)
+{
+    for (int i = 0; i < n; i++) printf("\t");
+
+    if (removed == NULL) printf(" ");
+    else printf("%d", removed->data);
+}
+
+void print(node* root)
+{
+    int height = find_height(root) - 1;
+    int counter = 0;
+    int numberOfElements = pow(2, height + 1) - 1;
+
+    node* level = root;
+    bool temp_isEmpty = true;
+    node* temp_value1 = NULL; // malloc(sizeof(int) * 1);
+    node* temp_value2 = NULL; // malloc(sizeof(int) * 1);
+    node** list = malloc(sizeof(node) * 2);
+    while (counter <= height) {
+        if (temp_isEmpty) {
+            printSpace(numberOfElements / pow(2, counter + 1), level);
+        }
+        else {
+            printSpace(numberOfElements / pow(2, counter), level);
+        }
+
+        if (level == NULL) {
+            temp_isEmpty = true;
+            temp_value1 = NULL;
+            temp_value2 = NULL;
+        } else {
+            temp_isEmpty = false;
+            temp_value1 = level->left;
+            temp_value2 = level->left;
+        }
+
+        if () {
+            printf("\n\n");
+            list[0] = temp_value1;
+            list[1] = temp_value2;
+            counter++;
+        }
+    }
 }
 
 int main(int argc, char** argv)
