@@ -93,15 +93,19 @@ void print(node* root)
     int counter = 0;
     int numberOfElements = pow(2, height + 1) - 1;
 
-    node* level = root;
     bool temp_isEmpty = true;
     node* temp_value1 = NULL; // malloc(sizeof(int) * 1);
     node* temp_value2 = NULL; // malloc(sizeof(int) * 1);
     node** list = malloc(sizeof(node) * 2);
-    list[0] = NULL;
+    list[0] = root;
     list[1] = NULL;
 
+    printf("Height of tree: %d\n", height);
     while (counter <= height) {
+        node* level = list[0];
+        list[0] = list[1];
+        list[1] = NULL;
+
         if (temp_isEmpty) {
             print_space(numberOfElements / pow(2, counter + 1), level);
         }
@@ -167,7 +171,6 @@ int main(int argc, char** argv)
     node* c10 = create_node(18);
     node* c11 = create_node(19);
 
-
     node* c12 = create_node(13);
     node* c13 = create_node(15);
 
@@ -191,6 +194,9 @@ int main(int argc, char** argv)
     root = put_to_left(root, c6);
     root = put_to_right(root, c17);
 
+    root = create_node(1);
+    root->left = create_node(2);
+    root->right = create_node(3);
     print(root);
 
     return 0;
