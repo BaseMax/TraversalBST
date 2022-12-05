@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-typedef struct node
-{
-    int data;
-    struct node *left;
-    struct node *right;
-} node;
+#include "TraversalBST.h"
 
 node* create_node(int data)
 {
@@ -20,7 +11,7 @@ node* create_node(int data)
 
 node* add_to_left(node *root, int data)
 {
-    if (root == NULL) return;
+    if (root == NULL) return root;
 
     root->left = create_node(data);
     return root->left;
@@ -28,7 +19,7 @@ node* add_to_left(node *root, int data)
 
 node* add_to_right(node *root, int data)
 {
-    if (root == NULL) return;
+    if (root == NULL) return root;
 
     root->right = create_node(data);
     return root->right;
@@ -36,7 +27,7 @@ node* add_to_right(node *root, int data)
 
 node* put_to_left(node* root, node* left)
 {
-    if (root == NULL) return;
+    if (root == NULL) return root;
 
     root->left = left;
     return root;
@@ -44,7 +35,7 @@ node* put_to_left(node* root, node* left)
 
 node* put_to_right(node* root, node* right)
 {
-    if (root == NULL) return;
+    if (root == NULL) return root;
 
     root->right = right;
     return root;
@@ -88,47 +79,6 @@ int find_height(node* root)
     return h2 + 1;
 }
 
-// public static void printBinaryTree(Node root)
-// {
-//     LinkedList<Node> treeLevel = new LinkedList<Node>();
-//     treeLevel.add(root);
-//     LinkedList<Node> temp = new LinkedList<Node>();
-//     int counter = 0;
-//     int height = heightOfTree(root) - 1;
-//     // System.out.println(height);
-//     double numberOfElements
-//         = (Math.pow(2, (height + 1)) - 1);
-//     // System.out.println(numberOfElements);
-//     while (counter <= height) {
-//         Node removed = treeLevel.removeFirst();
-//         if (temp.isEmpty()) {
-//             printSpace(numberOfElements
-//                             / Math.pow(2, counter + 1),
-//                         removed);
-//         }
-//         else {
-//             printSpace(numberOfElements
-//                             / Math.pow(2, counter),
-//                         removed);
-//         }
-//         if (removed == null) {
-//             temp.add(null);
-//             temp.add(null);
-//         }
-//         else {
-//             temp.add(removed.left);
-//             temp.add(removed.right);
-//         }
-
-//         if (treeLevel.isEmpty()) {
-//             System.out.println("");
-//             System.out.println("");
-//             treeLevel = temp;
-//             temp = new LinkedList<>();
-//             counter++;
-//         }
-//     }
-// }
 void print_space(int n, node* removed)
 {
     for (int i = 0; i < n; i++) printf("\t");
@@ -148,12 +98,15 @@ void print(node* root)
     node* temp_value1 = NULL; // malloc(sizeof(int) * 1);
     node* temp_value2 = NULL; // malloc(sizeof(int) * 1);
     node** list = malloc(sizeof(node) * 2);
+    list[0] = NULL;
+    list[1] = NULL;
+
     while (counter <= height) {
         if (temp_isEmpty) {
-            printSpace(numberOfElements / pow(2, counter + 1), level);
+            print_space(numberOfElements / pow(2, counter + 1), level);
         }
         else {
-            printSpace(numberOfElements / pow(2, counter), level);
+            print_space(numberOfElements / pow(2, counter), level);
         }
 
         if (level == NULL) {
@@ -166,10 +119,13 @@ void print(node* root)
             temp_value2 = level->left;
         }
 
-        if () {
+        if (list[0] == NULL && list[1] == NULL) {
             printf("\n\n");
             list[0] = temp_value1;
             list[1] = temp_value2;
+            temp_isEmpty = true;
+            temp_value1 = NULL;
+            temp_value2 = NULL;
             counter++;
         }
     }
@@ -231,6 +187,11 @@ int main(int argc, char** argv)
     node* c18 = create_node(11);
     c17 = put_to_left(c17, c18);
     c17 = put_to_right(c17, c16);
+
+    root = put_to_left(root, c6);
+    root = put_to_right(root, c17);
+
+    print(root);
 
     return 0;
 }
