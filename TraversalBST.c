@@ -79,7 +79,49 @@ int main(int argc, char** argv)
      5   6      16 17 18 19
     */
     node* root = create_node(1);
-    root = put_to_left(root, )
+    node* c1 = create_node(5);
+    node* c2 = create_node(6);
+    node* c3 = create_node(4);
+    c3 = put_to_left(c3, c1);
+    c3 = put_to_right(c3, c2);
+
+    node* c4 = create_node(3);
+    node* c5 = create_node(7);
+    c4 = put_to_left(c4, c3);
+    c4 = put_to_left(c4, c5);
+
+    node* c6 = create_node(2);
+    node* c7 = create_node(8);
+    c6 = put_to_left(c6, c4);
+    c6 = put_to_right(c6, c7);
+
+
+    node* c8 = create_node(16);
+    node* c9 = create_node(17);
+
+    node* c10 = create_node(18);
+    node* c11 = create_node(19);
+
+
+    node* c12 = create_node(13);
+    node* c13 = create_node(15);
+
+    c13 = put_to_left(c13, c10);
+    c13 = put_to_right(c13, c11);
+
+    c12 = put_to_left(c12, c8);
+    c12 = put_to_right(c12, c9);
+
+    node* c14 = create_node(14);
+    node* c15 = create_node(15);
+    node* c16 = create_node(12);
+    c16 = put_to_left(c16, c14);
+    c16 = put_to_right(c16, c15);
+
+    node* c17 = create_node(10);
+    node* c18 = create_node(11);
+    c17 = put_to_left(c17, c18);
+    c17 = put_to_right(c17, c16);
 
     return 0;
 }
