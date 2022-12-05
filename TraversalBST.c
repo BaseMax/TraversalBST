@@ -46,7 +46,7 @@ void print_inorder(node* root)
     if (root == NULL) return;
 
     print_inorder(root->left);
-    printf(" %d ", root->data);
+    printf("%d ", root->data);
     print_inorder(root->right);
 }
 
@@ -194,10 +194,33 @@ int main(int argc, char** argv)
     root = put_to_left(root, c6);
     root = put_to_right(root, c17);
 
+    print_inorder(root);
+    printf("\n");
+
+    print_preorder(root);
+    printf("\n");
+
+    print_proorder(root);
+    printf("\n");
+
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+
     root = create_node(1);
     root->left = create_node(2);
     root->right = create_node(3);
-    print(root);
+
+    print_inorder(root);
+    printf("\n");
+
+    print_preorder(root);
+    printf("\n");
+
+    print_proorder(root);
+    printf("\n");
+
+    // print(root);
 
     return 0;
 }
