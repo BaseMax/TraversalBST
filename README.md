@@ -4,6 +4,22 @@ This is a simple implementation of Binary Search Tree (BST) in C language. All I
 
 This code is written for educational purposes.
 
+### Examples
+
+```text
+7 3 2 8 1 11 10 14 12 15
+1 2 3 7 8 10 11 12 14 15
+7 3 8 2 11 14 15 12 10 1
+```
+
+OR
+
+```text
+2 1 3
+1 2 3
+2 3 1
+```
+
 ### Structure
 
 ```c
